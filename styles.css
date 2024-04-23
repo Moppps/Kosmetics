@@ -5,6 +5,8 @@
 :root {
   --color-primary: #FFC8E6;
   --color-primary-hover: rgb(187, 141, 149);
+  --color-black: #1b1b1b;
+  --color-black-opacity: rgba(48, 48, 48, 0.7);
 }
 
 ul {
@@ -32,15 +34,27 @@ body {
   flex-direction: column;
   width: 1100px;
   min-height: 100vh;
-  background: #1b1b1b;
+  background: var(--color-black);
 }
 
 .header {
-  padding: 19px 49px;
   width: 100%;
   font-size: 48px;
   background-image: url(images/header-bg.png);
   aspect-ratio: 1100 / 405;
+}
+
+.header-menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 19px 49px;
+  background: var(--color-black-opacity)
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  fill: white;
 }
 
 .main {
@@ -107,6 +121,6 @@ body {
 
 .footer {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   padding: 19px 49px;
 }
