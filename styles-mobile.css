@@ -1,0 +1,44 @@
+@media (max-width: 700px) {
+  .body {
+    width: 100%;
+    margin: 0;
+  }
+
+  .header {
+    padding-top: 50px;
+    background-image: none;
+    aspect-ratio: inherit;
+    font-size: 24px;
+  }
+
+  .header-menu {
+    left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .header-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .catalog-title {
+    text-align: start;
+  }
+
+  .catalog-title h2 {
+    font-size: 24px;
+    margin: 20px;
+  }
+
+  .catalog-products {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+}
+
