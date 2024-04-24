@@ -5,10 +5,14 @@
   }
 
   .header {
-    padding-top: 50px;
+    padding-top: 70px;
     background-image: none;
     aspect-ratio: inherit;
     font-size: 24px;
+  }
+
+  main {
+    padding: 20px;
   }
 
   .header-menu {
@@ -22,19 +26,53 @@
     height: 20px;
   }
 
+  .mobile-menu {
+    display: block;
+  }
+
+  .mobile-menu .close {
+    display: none;
+  }
+
+  .header.menu-active .mobile-menu .close {
+    display: block;
+  }
+
+  .header.menu-active .mobile-menu .burger {
+    display: none;
+  }
+
   .catalog-title {
     text-align: start;
   }
 
   .catalog-title h2 {
     font-size: 24px;
-    margin: 20px;
+    margin: 20px 0;
   }
 
   .catalog-products {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 20px 0;
+  }
+
+  .header-navigation-wrapper {
+    display: none;
+  }
+
+  .header.menu-active .header-navigation-wrapper {
+    display: block;
+  }
+
+  .header-navigation-wrapper {
+    position: fixed;
+    top: 67px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: var(--color-background-nav);
+    padding: 20px;
   }
 
   .footer {
