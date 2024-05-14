@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Помады PINKCAKE - косметика для тебя.</title>
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-mobile.css">
+
+  <script src="js/products.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/showProducts.js"></script>
+</head>
+<body>
+  <div class="body">
+    <header class="header">
+      <div class="header-menu">
+        <div class="logo"><a href="index.html">PINKCAKE</a></div>
+        
+        <div class="actions">
+          <div>
+            <a href="basket.html" class="shop-basket" id="shop-basket">
+              <img class="header-icon" src="icons/shopping-cart.svg" title="Корзина пока пуста">
+            </a>
+          </div>
+
+          <div class="mobile-menu">
+            <img class="header-icon burger" src="icons/menu-burger.svg" title="Меню">
+            <img class="header-icon close" src="icons/close.svg" title="Меню">
+          </div>
+        </div>
+      </div>
+
+      <div class="header-navigation-wrapper">
+        <ul class="header-navigation">
+          <li>
+            <div class="header-navigation-title has-child">Категории</div>
+            <ul class="header-navigation-list">
+              <li><a href="lipstick.html">Помадa</a></li>
+              <li><a href="mascara.html">Цветная тушь</a></li>
+              <li><a href="palette.html">Палетка теней</a></li>
+              <li><a href="lipgloss.html">Блеск для губ</a></li>
+              <li>Подводка</li>
+              <li><a href="other.html">Прочее</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="payment">
+      <div class="bread-crumbs">
+        <ul>
+          <li><a href="index.html" title="Все категории">Все категории</a></li>
+          <li><a href="basket.html" title="Корзина">Корзина</a></li>
+          <li>Оплата</li>
+        </ul>
+      </div>
+
+      <form>
+        <div class="payment-title">
+          <h2>Оплата заказа</h2>
+        </div>
+
+        <div class="payment-text">
+          Заполните все поля.
+        </div>
+
+        <div class="payment-delivery width-60">
+          <div class="input">
+            <div class="input-text">ФИО:</div>
+            <input type="text" required />
+          </div>
+
+          <div class="twix">
+            <div class="input">
+              <div class="input-text">Телефон:</div>
+              <input type="text" required />
+            </div>
+  
+            <div class="input">
+              <div class="input-text">E-mail:</div>
+              <input type="email" required />
+            </div>
+          </div>
+
+          <div class="input">
+            <div class="input-text">Адрес доставки:</div>
+            <textarea required></textarea>
+          </div>
+        </div>
+
+        <div class="payment-card">
+          <div class="width-60">
+            <div class="text-align-right">
+              <img class="payment-img" src="images/mir.png">
+              <img class="payment-img" src="images/mastercard.png">
+              <img class="payment-img" src="images/visa.png">
+            </div> 
+
+            <div class="input">
+              <div class="input-text">Номер карты:</div>
+              <input type="text" required />
+            </div>
+
+            <div class="payment-card-date">
+              <div class="input">
+                <div class="input-text">Срок действия:</div>
+                <div class="payment-input">
+                  <input type="text" placeholder="ММ" required />
+                  <span>/</span>
+                  <input type="text" placeholder="ГГ" required />
+                </div>
+              </div>
+
+              <div class="input">
+                <div class="input-text">Код безопасности:</div>
+                <div class="payment-input-cvv">
+                  <input type="text" placeholder="ММ" required />
+                  <a href="images/cvv.png" target="_blank"><img class="payment-img-cvv" src="images/cvv.png" /></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="input">
+              <div class="input-text">Имя владельца карты:</div>
+              <input type="text" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="width-60 text-align-right">
+          <button class="payment-button" type="submit">Оплатить</button>
+        </div>
+      </form>
+    </main>
+    <footer class="footer">Yaroslava Nesterenko 2024</footer>
+
+    <script>
+      const basket = JSON.parse(localStorage.getItem('basket'));
+
+      const basketIds = Object.keys(basket).map(Number);
+
+      const products = PRODUCTS_LIST.filter(p => basketIds.includes(p.id));
+
+      let sum = 0;
+
+      products.forEach(product => {
+        sum += product.price * basket[product.id];
+      });
+
+      const paymentButtonHtml = document.querySelector('.payment-button');
+      const textNode = document.createTextNode(`Оплатить (${sum} ₽)`);
+      paymentButtonHtml.replaceChildren(textNode)
+
+    </script>
+  </div>
+</body>
+</html>

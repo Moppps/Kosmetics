@@ -23,7 +23,7 @@
     <header class="header">
       <div class="header-menu">
         <div class="logo"><a href="index.html">PINKCAKE</a></div>
-
+        
         <div class="actions">
           <div>
             <a href="basket.html" class="shop-basket" id="shop-basket">
@@ -45,44 +45,80 @@
             <ul class="header-navigation-list">
               <li><a href="lipstick.html">Помадa</a></li>
               <li><a href="mascara.html">Цветная тушь</a></li>
-              <li>Палетка теней</li>
+              <li><a href="palette.html">Палетка теней</a></li>
               <li><a href="lipgloss.html">Блеск для губ</a></li>
-              <li><a href="eyeliner.html">Подводка</a></li>
+              <li>Подводка</li>
               <li><a href="other.html">Прочее</a></li>
             </ul>
           </li>
         </ul>
       </div>
     </header>
-    <main class="category">
+    <main class="basket">
       <div class="bread-crumbs">
         <ul>
           <li><a href="index.html" title="Все категории">Все категории</a></li>
-          <li>Палетка теней</li>
+          <li>Корзина</li>
         </ul>
       </div>
 
-      <div class="catalog-title">
-        <h2>Палетка теней</h2>
+      <div class="basket-title">
+        <h2>Корзина<span class="basket-empty"> пуста</span></h2>
+      </div>
+
+      <div class="basket-body">
+        <div class="basket-empty">
+          <a href="index.html" class="catalog-button">Перейти к покупкам</a>
+        </div>
+
+        <div class="products"></div>
+
+        <div class="summary">
+          <span>Вы заказали товаров на сумму: <span class="summary-price"></span></span>
+          <a class="summary-payment-button" href="payment.html">Перейти к оплате</a>
+        </div>
       </div>
     </main>
     <footer class="footer">Yaroslava Nesterenko 2024</footer>
-  </div>
 
-  <script>
-    const CURRENT_CATEGORY = 'palette';
+    <script>
+      const updateProductInBasket = () => {
+        const productsDiv = document.querySelector('.products');
+        productsDiv?.replaceChildren();
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const products = document.querySelector('.products');
+        const basket = JSON.parse(localStorage.getItem('basket'));
 
-      PRODUCTS_LIST
-        .filter(p => p.category === CURRENT_CATEGORY)
-        .forEach(product => {
-          products.appendChild(createProduct(product));
+        const basketIds = Object.keys(basket).map(Number);
+
+        const products = PRODUCTS_LIST.filter(p => basketIds.includes(p.id));
+
+        let sum = 0;
+        
+        products.forEach(product => {
+          sum += product.price * basket[product.id];
+          productsDiv.appendChild(createProduct(product, true));
         });
 
-      EVENT_EMITER.emit('countBasket');
-    })
-  </script>
+        const sumDiv = document.querySelector('.summary');
+
+        if (!sum) {
+          sumDiv.classList.add('hidden');
+        } else {
+          sumDiv.classList.remove('hidden');
+        }
+
+        const sumDivPrice = sumDiv.querySelector('.summary-price');
+
+        const textNode = document.createTextNode(sum);
+        sumDivPrice.replaceChildren(textNode)
+
+        EVENT_EMITER.emit('countBasket');
+      }
+
+      updateProductInBasket();
+
+      EVENT_EMITER.on('updateProductsInBasket', updateProductInBasket);
+    </script>
+  </div>
 </body>
 </html>

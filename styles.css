@@ -114,20 +114,20 @@ main {
   background: var(--color-primary-hover);
 }
 
-.catalog-products {
+.catalog-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
 
-.product-card {
+.catalog-card {
   display: flex;
   flex-direction: column;
   gap: 30px;
   margin-bottom: 20px;
 }
 
-.product-card img {
+.catalog-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
 }
@@ -226,14 +226,262 @@ main {
   color: var(--color-primary);
 }
 
+.shop-basket {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.shop-basket[data-count]::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: attr(data-count);
+  font-size: 16px;
+  font-weight: 600;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  background: red;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  cursor: pointer;
+}
+
 .bread-crumbs ul a::after {
   content: '>';
   margin-left: 20px;
 }
 
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.product-card {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 40px;
+}
+
+.product-card-images {
+  width: 150px;
+  text-align: center;
+  background-color: black;
+}
+
+.product-card-images img {
+  height: 100%;
+}
+
+.product-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(70, 70, 70);
+}
+
+.product-card-title h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.product-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-card-price {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.product-link {
+  display: flex;
+  color: var(--color-primary);
+}
+
+.product-card-description {
+  font-size: 14px;
+  font-style: italic;
+  color: rgb(141, 116, 121);
+}
+
+.product-card-basket {
+  display: flex;
+}
+
+.product-card-basket.has-some .product-card-basket-button {
+  display: none;
+}
+
+.product-card-basket .product-card-basket-counter {
+  display: none;
+}
+
+.product-card-basket.has-some .product-card-basket-counter {
+  display: flex;
+  gap: 10px;
+}
+
+.product-card-basket {
+  display: flex;
+  gap: 40px;
+}
+
+.product-card-basket-counter-input {
+  width: 70px;
+  padding: 0 15px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.product-card-basket-counter-button {
+  font-size: 24px;
+}
+
+.product-card-basket-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.button-icon {
+  width: 16px;
+  height: 16px;
+}
+
 .footer {
   text-align: center;
   padding: 19px 49px;
+}
+
+.hidden {
+  display: none;
+}
+
+.basket-title {
+
+}
+
+.basket-body {
+  padding: 20px 0;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+.summary-price {
+  font-size: 30px;
+  color: white;
+}
+
+.summary-price::after {
+  content: " ₽";
+}
+
+.summary-payment-button {
+  padding: 20px 40px;
+  color: black;
+  background: white;
+  border-radius: 5px;
+}
+
+.input {
+  width: 100%;
+  margin: 10px 0;
+} 
+
+.input-text {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.input input[type="text"],
+.input input[type="email"],
+.input textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  background: #e0d9dc;
+  color:#612847;
+}
+
+.payment-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.twix {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.width-60 {
+  width: 60%;
+}
+
+.payment-card {
+  margin: 40px 0;
+}
+
+.payment-img-cvv {
+  height: 35px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-img {
+  height: 25px;
+}
+
+.payment-card-date {
+  display: flex;
+  gap: 20px;
+}
+
+.payment-card-text {
+  margin-bottom: 10px;
+}
+
+.payment-input-cvv {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.payment-button {
+  padding: 10px 20px;
+  font-size: 24px;
+  background: #FFC8E6;
+}
+
+.text-align-right {
+  text-align: right;
 }
 
 @media (max-width: 1100px) {

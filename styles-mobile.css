@@ -51,7 +51,7 @@
     margin: 20px 0;
   }
 
-  .catalog-products {
+  .catalog-items {
     display: flex;
     flex-direction: column;
     margin: 20px 0;
@@ -73,6 +73,20 @@
     right: 0;
     background: var(--color-background-nav);
     padding: 20px;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .product-card-images {
+    width: 100%;
+  }
+
+  .width-60 {
+    width: 100%;
   }
 
   .footer {

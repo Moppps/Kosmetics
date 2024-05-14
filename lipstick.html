@@ -13,6 +13,10 @@
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styles-mobile.css">
+
+  <script src="js/products.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/showProducts.js"></script>
 </head>
 <body>
   <div class="body">
@@ -20,7 +24,11 @@
       <div class="header-menu">
         <div class="logo"><a href="index.html">PINKCAKE</a></div>
         <div class="actions">
-          <a href=""><img class="header-icon" src="icons/shopping-cart.svg" title="Корзина пока пуста"></a>
+          <div>
+            <a href="basket.html" class="shop-basket" id="shop-basket">
+              <img class="header-icon" src="icons/shopping-cart.svg" title="Корзина пока пуста">
+            </a>
+          </div>
 
           <div class="mobile-menu">
             <img class="header-icon burger" src="icons/menu-burger.svg" title="Меню">
@@ -56,18 +64,26 @@
       <div class="catalog-title">
         <h2>Помада</h2>
       </div>
+
+      <div class="products"></div>
     </main>
     <footer class="footer">Yaroslava Nesterenko 2024</footer>
   </div>
 
   <script>
-    document.querySelector('.header-navigation > li').addEventListener('click', function (e) {
-      this.classList.toggle('active');
-    })
+    const CURRENT_CATEGORY = 'lipstick';
 
-    document.querySelector('.mobile-menu').addEventListener('click', function (e) {
-      document.querySelector('.header').classList.toggle('menu-active');
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+      const products = document.querySelector('.products');
+
+      PRODUCTS_LIST
+        .filter(p => p.category === CURRENT_CATEGORY)
+        .forEach(product => {
+          products.appendChild(createProduct(product));
+        });
+
+      EVENT_EMITER.emit('countBasket');
+    })
   </script>
 </body>
 </html>
