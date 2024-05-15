@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PINKCAKE - косметика для тебя.</title>
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-mobile.css">
+
+  <script src="js/products.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/showProducts.js"></script>
+</head>
+<body>
+  <div class="body">
+    <header class="header">
+      <div class="header-menu">
+        <div class="logo"><a href="index.html">PINKCAKE</a></div>
+        <div class="actions">
+          <div>
+            <a href="basket.html" class="shop-basket" id="shop-basket">
+              <img class="header-icon" src="icons/shopping-cart.svg" title="Корзина пока пуста">
+            </a>
+          </div>
+
+          <div class="mobile-menu">
+            <img class="header-icon burger" src="icons/menu-burger.svg" title="Меню">
+            <img class="header-icon close" src="icons/close.svg" title="Меню">
+          </div>
+        </div>
+      </div>
+
+      <div class="header-navigation-wrapper">
+        <ul class="header-navigation">
+          <li>
+            <div class="header-navigation-title has-child">Категории</div>
+            <ul class="header-navigation-list"></ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <div class="bread-crumbs">
+        <ul>
+          <li><a href="index.html" title="Все категории">Все категории</a></li>
+          <li class="category-link"></li>
+          <li class="product-name"></li>
+        </ul>
+      </div>
+
+      <div class="product">
+        <div class="product-image"></div>
+        <div class="product-info">
+          <h2 class="product-name product-title"></h2>
+          <div class="product-description"></div>
+          <div class="product-params-title"><h3>О товаре:</h3></div>
+          <div class="product-params"></div>
+          <div class="product-price"></div>
+
+        </div>
+      </div>
+
+      <div class="product-reviews-title"><h3>Отзывы:</h3></div>
+      <div class="product-reviews"></div>
+    </main>
+    <footer class="footer">Yaroslava Nesterenko 2024</footer>
+  </div>
+
+  <script>
+    createCategoryNavigation();
+
+    const createCategoryLink = (category) => {
+      const aHTML = createElement('a');
+      aHTML.href = `category.html?category=${category.name}`;
+      const textNode = document.createTextNode(category.title);
+      aHTML.appendChild(textNode);
+
+      return aHTML;
+    }
+
+    const createRaiting = (raiting) => {
+      const wrapperHTML = createElement('div', ['rating-result']);
+
+      for (let i = 1; i <= 5; i++) {
+        const spanHTML = createElement('span');
+
+        if (i <= raiting) {
+          spanHTML.classList.add('active');
+        }
+
+        wrapperHTML.appendChild(spanHTML);
+      }
+
+      return wrapperHTML;
+    }
+
+    const url = new URL(document.location);
+    const productId = Number(url.searchParams.get('product_id'));
+
+    if (productId) {
+      const product = PRODUCTS_LIST.find(p => p.id === productId);
+
+      if (product) {
+        const category = CATEGORIES[product.category];
+        const categoryLinkHTML = document.querySelector('.category-link');
+        categoryLinkHTML.replaceChildren(createCategoryLink(category));
+
+        const productNamesHTML = document.querySelectorAll('.product-name');
+        productNamesHTML.forEach(p => {
+          const textNode = document.createTextNode(product.title);
+          p.replaceChildren(textNode);
+        });
+
+        const productImageHTML = document.querySelector('.product-image');
+        const img = new Image();
+        img.src = product.image;
+        productImageHTML.replaceChildren(img);
+
+        const productDescriptionHTML = document.querySelector('.product-description');
+        const textNode = document.createTextNode(product.description);
+        productDescriptionHTML.replaceChildren(textNode);
+
+        const productParamsHTML = document.querySelector('.product-params');
+        for (const param of product.params) {
+          const [pName, pValue] = param.split(':');
+
+          const wrapperHTML = createElement('div', ['product-param']);
+
+          const pNameHTML = createElement('div', ['product-param-name']);
+          pNameHTML.appendChild(document.createTextNode(pName));
+
+          const pValueHTML = createElement('div', ['product-param-value']);
+          pValueHTML.appendChild(document.createTextNode(pValue));
+
+          wrapperHTML.appendChild(pNameHTML);
+          wrapperHTML.appendChild(pValueHTML);
+
+          productParamsHTML.appendChild(wrapperHTML);
+        }
+
+        const productPayHTML = document.querySelector(".product-price");
+        productPayHTML.replaceChildren(createProductCardActions(product));
+
+        const productReviewsHTML = document.querySelector('.product-reviews');
+        for (const review of product.reviews) {
+          const firstLetter = review.name.split('')?.[0] ?? 'Н';
+
+          const wrapperHTML = createElement('div', ['product-review']);
+
+          const avatarHTML = createElement('div', ['product-review-avatar']);
+          avatarHTML.appendChild(document.createTextNode(firstLetter));
+
+          const nameHTML = createElement('div', ['product-review-name']);
+          nameHTML.appendChild(document.createTextNode(review.name));
+
+          const raitingHTML = createElement('div', ['product-review-raiting']);
+          raitingHTML.appendChild(createRaiting(review.raiting));
+
+          const textHTML = createElement('div', ['product-review-text']);
+          textHTML.appendChild(document.createTextNode(review.text));
+
+          wrapperHTML.appendChild(avatarHTML);
+          wrapperHTML.appendChild(nameHTML);
+          wrapperHTML.appendChild(raitingHTML);
+          wrapperHTML.appendChild(textHTML);
+
+          productReviewsHTML.appendChild(wrapperHTML);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -14,7 +14,9 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styles-mobile.css">
 
+  <script src="js/products.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/showProducts.js"></script>
 </head>
 <body>
   <div class="body">
@@ -40,14 +42,7 @@
         <ul class="header-navigation">
           <li>
             <div class="header-navigation-title has-child">Категории</div>
-            <ul class="header-navigation-list">
-              <li><a href="lipstick.html">Помадa</a></li>
-              <li><a href="mascara.html">Цветная тушь</a></li>
-              <li><a href="palette.html">Палетка теней</a></li>
-              <li><a href="lipgloss.html">Блеск для губ</a></li>
-              <li><a href="eyeliner.html">Подводка</a></li>
-              <li><a href="other.html">Прочее</a></li>
-            </ul>
+            <ul class="header-navigation-list"></ul>
           </li>
         </ul>
       </div>
@@ -57,45 +52,14 @@
         <h2>Категории товаров</h2>
       </div>
 
-      <div class="catalog-items">
-        <div class="catalog-card">
-          <img src="images/Product_1.png">
-
-          <a href="lipstick.html" class="catalog-button">Помада</a>
-        </div>
-
-        <div class="catalog-card">
-          <img src="images/Product_2.png">
-
-          <a href="mascara.html" class="catalog-button">Цветная тушь</a>
-        </div>
-
-        <div class="catalog-card">
-          <img src="images/Product_3.png">
-
-          <a href="palette.html" class="catalog-button">Палетка теней</a>
-        </div>
-
-        <div class="catalog-card">
-          <img src="images/Product_4.png">
-
-          <a href="lipgloss.html" class="catalog-button">Блеск для губ</a>
-        </div>
-
-        <div class="catalog-card">
-          <img src="images/Product_5.png">
-
-          <a href="eyeliner.html" class="catalog-button">Подводка</a>
-        </div>
-
-        <div class="catalog-card">
-          <img src="images/Product_6.png">
-
-          <a href="other.html" class="catalog-button">Прочее</a>
-        </div>
-      </div>
+      <div class="catalog-items"></div>
     </main>
     <footer class="footer">Yaroslava Nesterenko 2024</footer>
   </div>
+
+  <script>
+    createCategoryNavigation();
+    createCategoriesList();
+  </script>
 </body>
 </html>

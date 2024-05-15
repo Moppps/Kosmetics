@@ -42,14 +42,7 @@
         <ul class="header-navigation">
           <li>
             <div class="header-navigation-title has-child">Категории</div>
-            <ul class="header-navigation-list">
-              <li><a href="lipstick.html">Помадa</a></li>
-              <li><a href="mascara.html">Цветная тушь</a></li>
-              <li><a href="palette.html">Палетка теней</a></li>
-              <li><a href="lipgloss.html">Блеск для губ</a></li>
-              <li>Подводка</li>
-              <li><a href="other.html">Прочее</a></li>
-            </ul>
+            <ul class="header-navigation-list"></ul>
           </li>
         </ul>
       </div>
@@ -63,7 +56,7 @@
         </ul>
       </div>
 
-      <form>
+      <form action="success.html">
         <div class="payment-title">
           <h2>Оплата заказа</h2>
         </div>
@@ -75,24 +68,24 @@
         <div class="payment-delivery width-60">
           <div class="input">
             <div class="input-text">ФИО:</div>
-            <input type="text" required />
+            <input type="text" />
           </div>
 
           <div class="twix">
             <div class="input">
               <div class="input-text">Телефон:</div>
-              <input type="text" required />
+              <input type="text" />
             </div>
   
             <div class="input">
               <div class="input-text">E-mail:</div>
-              <input type="email" required />
+              <input type="email" />
             </div>
           </div>
 
           <div class="input">
             <div class="input-text">Адрес доставки:</div>
-            <textarea required></textarea>
+            <textarea></textarea>
           </div>
         </div>
 
@@ -106,23 +99,23 @@
 
             <div class="input">
               <div class="input-text">Номер карты:</div>
-              <input type="text" required />
+              <input type="text" />
             </div>
 
             <div class="payment-card-date">
               <div class="input">
                 <div class="input-text">Срок действия:</div>
                 <div class="payment-input">
-                  <input type="text" placeholder="ММ" required />
+                  <input type="text" placeholder="ММ" />
                   <span>/</span>
-                  <input type="text" placeholder="ГГ" required />
+                  <input type="text" placeholder="ГГ" />
                 </div>
               </div>
 
               <div class="input">
                 <div class="input-text">Код безопасности:</div>
                 <div class="payment-input-cvv">
-                  <input type="text" placeholder="ММ" required />
+                  <input type="text" placeholder="ММ" />
                   <a href="images/cvv.png" target="_blank"><img class="payment-img-cvv" src="images/cvv.png" /></a>
                 </div>
               </div>
@@ -130,7 +123,7 @@
 
             <div class="input">
               <div class="input-text">Имя владельца карты:</div>
-              <input type="text" required />
+              <input type="text" />
             </div>
           </div>
         </div>
@@ -143,6 +136,8 @@
     <footer class="footer">Yaroslava Nesterenko 2024</footer>
 
     <script>
+      createCategoryNavigation();
+
       const basket = JSON.parse(localStorage.getItem('basket'));
 
       const basketIds = Object.keys(basket).map(Number);
@@ -157,7 +152,7 @@
 
       const paymentButtonHtml = document.querySelector('.payment-button');
       const textNode = document.createTextNode(`Оплатить (${sum} ₽)`);
-      paymentButtonHtml.replaceChildren(textNode)
+      paymentButtonHtml.replaceChildren(textNode);
 
     </script>
   </div>

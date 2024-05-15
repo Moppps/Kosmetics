@@ -146,13 +146,13 @@ const wrapProductLink = (product, element) => {
 const createProduct = (product, isForBasket = false) => {
   const productDiv = createElement('div', ['product-card']);
 
-  const image = wrapProductLink(product, createProductImage(product.img));
+  const image = wrapProductLink(product, createProductImage(product.image));
 
   const info = createElement('div', ['product-card-info']);
 
   const title = createProductCardTitle(product.title);
   const description = createElement('div', ['product-card-description'], null, product.description);
-  const params = createElement('div', ['product-card-params'], null, product.params);
+  const params = createElement('div', ['product-card-params'], null, product.params[0]);
   const actions = createProductCardActions(product, isForBasket);
 
   info.appendChild(title);
@@ -164,4 +164,50 @@ const createProduct = (product, isForBasket = false) => {
   productDiv.appendChild(wrapProductLink(product, info));
 
   return productDiv
+}
+
+const createCategoryNavigation = (activeCategory = null) => {
+  const navigationHTML = document.querySelector(".header-navigation-list");
+
+  for (const categoryKey of Object.keys(CATEGORIES)) {
+    const category = CATEGORIES[categoryKey];
+
+    const liHTML = createElement('li');
+    const textNode = document.createTextNode(category.title);
+
+    if (activeCategory === category.name) {
+      liHTML.appendChild(textNode);
+    } else {
+      const aHTML = createElement('a');
+      aHTML.href = `category.html?category=${category.name}`;
+
+      aHTML.appendChild(textNode);
+      liHTML.appendChild(aHTML);
+    }
+
+    navigationHTML.appendChild(liHTML);
+  };
+}
+
+const createCategoriesList = () => {
+  const listHTML = document.querySelector(".catalog-items");
+
+  for (const categoryKey of Object.keys(CATEGORIES)) {
+    const category = CATEGORIES[categoryKey];
+
+    const divHTML = createElement('div', ['catalog-card']);
+
+    const img = new Image();
+    img.src = category.image;
+
+    const aHTML = createElement('a', ['catalog-button']);
+    aHTML.href = `category.html?category=${category.name}`;
+    const textNode = document.createTextNode(category.title);
+    aHTML.appendChild(textNode);
+
+    divHTML.appendChild(img);
+    divHTML.appendChild(aHTML);
+
+    listHTML.appendChild(divHTML);
+  };
 }

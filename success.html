@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Помады PINKCAKE - косметика для тебя.</title>
+  <title>PINKCAKE - косметика для тебя</title>
 
   <link rel="shortcut icon" href="favicon.ico">
 
@@ -42,47 +42,32 @@
         <ul class="header-navigation">
           <li>
             <div class="header-navigation-title has-child">Категории</div>
-            <ul class="header-navigation-list">
-              <li><a href="lipstick.html">Помадa</a></li>
-              <li>Цветная тушь</li>
-              <li><a href="palette.html">Палетка теней</a></li>
-              <li><a href="lipgloss.html">Блеск для губ</a></li>
-              <li><a href="eyeliner.html">Подводка</a></li>
-              <li><a href="other.html">Прочее</a></li>
-            </ul>
+            <ul class="header-navigation-list"></ul>
           </li>
         </ul>
       </div>
     </header>
-    <main class="category">
-      <div class="bread-crumbs">
-        <ul>
-          <li><a href="index.html" title="Все категории">Все категории</a></li>
-          <li>Цветная тушь</li>
-        </ul>
+    <main class="success">
+      <div class="success-title">
+        <h2>Успешная оплата</h2>
       </div>
 
-      <div class="catalog-title">
-        <h2>Цветная тушь</h2>
+      <div class="success-desctiption">
+        <p>Оплата прошла успешно!</p>
+        <p>В блиайшее время вам позвонит наш менеджер для уточнения деталей заказа.</p>
+        <p>Спасибо что пользуетесь услугами нашего магазина!</p>
+      </div>
+
+      <div class="success-button">
+        <a href="index.html" class="catalog-button">Заказать что-то еще</a>
       </div>
     </main>
     <footer class="footer">Yaroslava Nesterenko 2024</footer>
   </div>
 
   <script>
-    const CURRENT_CATEGORY = 'mascara';
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const products = document.querySelector('.products');
-
-      PRODUCTS_LIST
-        .filter(p => p.category === CURRENT_CATEGORY)
-        .forEach(product => {
-          products.appendChild(createProduct(product));
-        });
-
-      EVENT_EMITER.emit('countBasket');
-    })
+    createCategoryNavigation();
+    EVENT_EMITER.emit('removeAllProductsFromBasket');
   </script>
 </body>
 </html>

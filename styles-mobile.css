@@ -26,6 +26,10 @@
     height: 20px;
   }
 
+  .bread-crumbs {
+    display: none;
+  }
+
   .mobile-menu {
     display: block;
   }
@@ -40,6 +44,27 @@
 
   .header.menu-active .mobile-menu .burger {
     display: none;
+  }
+
+  .header-navigation-title {
+    display: block;
+    color: white;
+  }
+
+  .header-navigation > li.active .header-navigation-title.has-child::before {
+    content: '';
+  }
+
+  .header-navigation-list {
+    display: block;
+  }
+
+  .header-navigation-title.has-child::before {
+    content: '';
+  }
+  
+  .header-navigation-title.has-child::before {
+    content: '';
   }
 
   .catalog-title {
@@ -87,6 +112,30 @@
 
   .width-60 {
     width: 100%;
+  }
+
+  .product {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-image {
+    padding: 20px 0;
+  }
+  
+  .product-info {
+    padding: 0;
+  }
+
+  .summary {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .summary-price {
+    display: block;
+    text-align: center;
+    padding: 20px;
   }
 
   .footer {

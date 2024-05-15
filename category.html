@@ -23,7 +23,6 @@
     <header class="header">
       <div class="header-menu">
         <div class="logo"><a href="index.html">PINKCAKE</a></div>
-
         <div class="actions">
           <div>
             <a href="basket.html" class="shop-basket" id="shop-basket">
@@ -42,14 +41,7 @@
         <ul class="header-navigation">
           <li>
             <div class="header-navigation-title has-child">Категории</div>
-            <ul class="header-navigation-list">
-              <li><a href="lipstick.html">Помадa</a></li>
-              <li><a href="mascara.html">Цветная тушь</a></li>
-              <li>Палетка теней</li>
-              <li><a href="lipgloss.html">Блеск для губ</a></li>
-              <li><a href="eyeliner.html">Подводка</a></li>
-              <li><a href="other.html">Прочее</a></li>
-            </ul>
+            <ul class="header-navigation-list"></ul>
           </li>
         </ul>
       </div>
@@ -58,31 +50,47 @@
       <div class="bread-crumbs">
         <ul>
           <li><a href="index.html" title="Все категории">Все категории</a></li>
-          <li>Палетка теней</li>
+          <li class="category-name"></li>
         </ul>
       </div>
 
       <div class="catalog-title">
-        <h2>Палетка теней</h2>
+        <h2 class="category-name"></h2>
       </div>
+
+      <div class="products"></div>
     </main>
     <footer class="footer">Yaroslava Nesterenko 2024</footer>
   </div>
 
   <script>
-    const CURRENT_CATEGORY = 'palette';
+    const url = new URL(document.location);
+    const categoryName = url.searchParams.get('category');
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const products = document.querySelector('.products');
+    if (categoryName) {
+      const category = CATEGORIES[categoryName];
 
-      PRODUCTS_LIST
-        .filter(p => p.category === CURRENT_CATEGORY)
-        .forEach(product => {
-          products.appendChild(createProduct(product));
-        });
+      createCategoryNavigation(category.name);
 
-      EVENT_EMITER.emit('countBasket');
-    })
+      if (category) {
+        const categoryNames = document.querySelectorAll('.category-name');
+
+        categoryNames.forEach(c => {    
+          const textNode = document.createTextNode(category.title);
+          c.replaceChildren(textNode);
+        })
+
+        const products = document.querySelector('.products');
+
+        PRODUCTS_LIST
+          .filter(p => p.category === category.name)
+          .forEach(product => {
+            products.appendChild(createProduct(product));
+          });
+
+        EVENT_EMITER.emit('countBasket');
+      }
+    }
   </script>
 </body>
 </html>

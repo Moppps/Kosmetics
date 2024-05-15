@@ -125,6 +125,13 @@ EVENT_EMITER.on('removeFromBasket', (prodictId) => {
   EVENT_EMITER.emit('countBasket');
 });
 
+EVENT_EMITER.on('removeAllProductsFromBasket', () => {
+  localStorage.setItem('basket', JSON.stringify({}));
+
+  EVENT_EMITER.emit('updateProductsInBasket');
+  EVENT_EMITER.emit('countBasket');
+});
+
 EVENT_EMITER.on('removeAllFromBasket', (prodictId) => {
   const basket = JSON.parse(localStorage.getItem('basket'));
   

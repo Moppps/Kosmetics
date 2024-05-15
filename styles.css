@@ -133,8 +133,8 @@ main {
 }
 
 .catalog-button {
+  display: inline-block;
   padding: 18px 20px;
-  width: 100%;
   font-size: 26px;
   background: var(--color-primary);
   color: white;
@@ -221,6 +221,15 @@ main {
   color: var(--color-primary-active);
 }
 
+.bread-crumbs ul li {
+  white-space: nowrap;
+}
+
+.bread-crumbs ul li:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .bread-crumbs ul a {
   text-decoration: none;
   color: var(--color-primary);
@@ -277,6 +286,8 @@ main {
 
 .product-card-images img {
   height: 100%;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .product-card-info {
@@ -370,11 +381,7 @@ main {
 }
 
 .hidden {
-  display: none;
-}
-
-.basket-title {
-
+  display: none !important;
 }
 
 .basket-body {
@@ -482,6 +489,107 @@ main {
 
 .text-align-right {
   text-align: right;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px 0;
+}
+
+.product-image {
+  display: flex;
+  justify-content: center;
+  padding: 20px 20px 20px 0;
+}
+
+.product-info {
+  padding: 0 0 20px 20px;
+}
+
+.product-image img {
+  height: 100%;
+  max-width: 100%;
+}
+
+.product-param {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.product-param:last-child {
+  border-bottom: none;
+}
+
+.product-param-name {  
+  font-size: 12px;
+}
+
+.product-price {
+  padding-top: 40px;
+}
+
+.product-price .product-card-price {
+  font-size: 44px;
+}
+
+.product-review {
+  display: grid;
+  grid-template-columns: 34px auto 140px;
+  grid-template-areas: 'avatar name raiting' '. text text';
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.product-review-avatar {
+  grid-area: avatar;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 10px 4px 10px;
+  color: black;
+  background-color: #e9d6e0;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.product-review-name {
+  grid-area: name;
+}
+
+.product-review-raiting {
+  grid-area: raiting;
+
+  text-align: end;
+}
+
+.product-review-text {
+  grid-area: text;
+}
+
+.rating-result {
+	margin: 0 auto;
+}
+.rating-result span {
+	padding: 0;
+	font-size: 24px;
+	margin: 0 3px;
+	line-height: 1;
+	color: lightgrey;
+	text-shadow: 1px 1px #bbb;
+}
+.rating-result > span:before {
+	content: '★';
+}
+.rating-result > span.active {
+	color: #e266aa;
+	text-shadow: 1px 1px #c60;
 }
 
 @media (max-width: 1100px) {

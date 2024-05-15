@@ -42,14 +42,7 @@
         <ul class="header-navigation">
           <li>
             <div class="header-navigation-title has-child">Категории</div>
-            <ul class="header-navigation-list">
-              <li><a href="lipstick.html">Помадa</a></li>
-              <li><a href="mascara.html">Цветная тушь</a></li>
-              <li><a href="palette.html">Палетка теней</a></li>
-              <li><a href="lipgloss.html">Блеск для губ</a></li>
-              <li>Подводка</li>
-              <li><a href="other.html">Прочее</a></li>
-            </ul>
+            <ul class="header-navigation-list"></ul>
           </li>
         </ul>
       </div>
@@ -82,6 +75,8 @@
     <footer class="footer">Yaroslava Nesterenko 2024</footer>
 
     <script>
+      createCategoryNavigation();
+
       const updateProductInBasket = () => {
         const productsDiv = document.querySelector('.products');
         productsDiv?.replaceChildren();
@@ -101,7 +96,7 @@
 
         const sumDiv = document.querySelector('.summary');
 
-        if (!sum) {
+        if (sum === 0) {
           sumDiv.classList.add('hidden');
         } else {
           sumDiv.classList.remove('hidden');
